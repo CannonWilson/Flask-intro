@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from markupsafe import escape
 
 app = Flask(__name__) # create instance of Flask class
@@ -7,6 +8,9 @@ app = Flask(__name__) # create instance of Flask class
 def hello_world(): # function triggered at route
     return "<p>Hello, World!</p>"
 
-@app.route("/<name>")
+@app.route("/<name>", methods=['GET', 'POST'])
 def print_name(name):
-    return f"Hello, {escape(name)}"
+    if request.method == 'POST':
+        return f"Added, {escape(name)}"
+    else:
+        return f"Found, {escape(name)}"
