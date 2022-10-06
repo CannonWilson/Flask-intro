@@ -14,3 +14,11 @@ def print_name(name):
         return f"Added, {escape(name)}"
     else:
         return f"Found, {escape(name)}"
+
+@app.get('/get_route')
+def handle_get():
+    return "<h1>GET got</h1>"
+
+@app.post('/post_route')
+def handle_get():
+    return "<h1>POST'd</h1>"
